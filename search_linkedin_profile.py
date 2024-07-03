@@ -1,7 +1,8 @@
+import csv
+import sys
+
 import serpapi
 from serpapi import GoogleSearch
-
-import csv
 
 def search_linkedin_profiles(csv_file, name_col, company_col):
     with open(csv_file, mode='r', newline='', encoding='utf-8') as file:
@@ -38,5 +39,9 @@ def search_linkedin_profiles(csv_file, name_col, company_col):
 
     return 'updated_' + csv_file
 
-
-search_linkedin_profiles('output_people.csv', 'full_name', 'domain')
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        csv_file = sys.argv[1]
+        name_column = sys.argv[2] if len(sys.argv) > 2 else 'full_name'
+        company_column = sys.argv[3] if len(sys.argv) > 3 else 'domain'
+        search_linkedin_profiles(csv_file, name_column, company_column)
