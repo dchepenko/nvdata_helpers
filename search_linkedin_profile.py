@@ -49,8 +49,3 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     search_linkedin_profiles(args.csv_file, args.name_column, args.company_column)
-
-
-git filter-branch --force --index-filter \
-"git rm --cached --ignore-unmatch path/to/file" \
---prune-empty --tag-name-filter cat -- --all

@@ -34,3 +34,4 @@ To run this project, you will need to add the following environment variables to
 ### Setting Up Your `.env` File
 1. Create a file named `.env` in the root directory of your project.
 2. Replace the placeholder values with your actual data.
+
