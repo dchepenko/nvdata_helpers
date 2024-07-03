@@ -1,4 +1,5 @@
 import csv
+import os
 import sys
 
 import serpapi
@@ -21,7 +22,7 @@ def search_linkedin_profiles(csv_file, name_col, company_col):
             params = {
                 "engine": "google",
                 "q": f"{name}, {company_domain} linkedin.com",
-                "api_key": "YOUR_API_KEY"
+                "api_key": os.getenv('SERP_API_KEY')
             }
 
             search = GoogleSearch(params)
@@ -40,8 +41,16 @@ def search_linkedin_profiles(csv_file, name_col, company_col):
     return 'updated_' + csv_file
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        csv_file = sys.argv[1]
-        name_column = sys.argv[2] if len(sys.argv) > 2 else 'full_name'
-        company_column = sys.argv[3] if len(sys.argv) > 3 else 'domain'
-        search_linkedin_profiles(csv_file, name_column, company_column)
+    import argparse
+    parser = argparse.ArgumentParser(description="Search LinkedIn profiles based on names and company domains from a CSV file.")
+    parser.add_argument("csv_file", type=str, help="Path to the input CSV file.")
+    parser.add_argument("--name_column", type=str, default='full_name', help="Column name for candidate names. Default is 'full_name'.")
+    parser.add_argument("--company_column", type=str, default='domain', help="Column name for company domains. Default is 'domain'.")
+    args = parser.parse_args()
+
+    search_linkedin_profiles(args.csv_file, args.name_column, args.company_column)
+
+
+git filter-branch --force --index-filter \
+"git rm --cached --ignore-unmatch path/to/file" \
+--prune-empty --tag-name-filter cat -- --all

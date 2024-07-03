@@ -1,13 +1,13 @@
 import json
 import requests
 import argparse
+import os
+
 from itertools import islice
 
 
-
-# Replace 'YOUR_API_KEY' and 'YOUR_CALLBACK_URL' with your actual API key and callback URL
-API_KEY = '202.NZ8H64ve8nNXRHndyrjozYqpZFKB'
-CALLBACK_URL = 'https://16b7-45-4-64-172.ngrok-free.app'
+API_KEY = os.getenv('SIGNALHIRE_API_KEY')
+CALLBACK_URL = os.getenv('CALLBACK_URL')
 
 import csv
 
