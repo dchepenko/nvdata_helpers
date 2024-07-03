@@ -39,4 +39,4 @@ def search_linkedin_profiles(csv_file, name_col, company_col):
     return 'updated_' + csv_file
 
 
-process_people_from_csv('startup.csv', 'name', 'domain')
+search_linkedin_profiles('output_people.csv', 'full_name', 'domain')
